@@ -124,6 +124,14 @@
 </p>
 <h2 id="audio-examples">Audio Examples</h2>
 <p>&ldquo;Acid bass&rdquo; example with plucky bass:</p>
+<div class="container">
+  <audio controls style="width: 100%; margin-bottom: 20px">
+      
+      
+      
+      Your browser does not support the audio element.
+  </audio>
+</div>
 <p>Filter sweep with sawtooth:</p>
 <p>Envelope in free running mode:</p>
 <p>Triangle wave lead with reverb:</p>
@@ -157,7 +165,10 @@
 </ol>
 <h2 id="introduction">Introduction</h2>
 <p>The idea started when I saw a video by <a href="https://www.lookmumnocomputer.com/projects/#/cem-3340-diy-simple">Look Mum No Computer</a> (LMNC). He has been a great inspiration with all his crazy projects and DIY mentality. The video describes how to make a simple 1V/oct voltage controlled oscillator (VCO) using the CEM3340 chip (video below).</p>
-<p><a href="https://youtu.be/4Kz8YopLTCQ?si=">https://youtu.be/4Kz8YopLTCQ?si=</a>_A5oFi3oDRT34DK1</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/4Kz8YopLTCQ?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
 <p>By using the CEM3340 as the foundation for the synthesizer, creating my own seemed more realistic with the limited knowledge I had about analog circuits at that point in time.</p>
 <p>One of the difficulties of making a synth was knowing were to start. I knew kinda what type of synth I wanted. A monophonic synth using the CEM3340 VCO plus a voltage controlled filter (VCF) and a voltage controlled amplifier (VCA), both of which had their own ADSR envelope generator. In other words, a very standard an classic analog monophonic synthesizer. The block diagram below shows the basic architecture I ended up with, consisting of the aforementioned VCO, VCF, and VCA (plus some ADSR&rsquo;s and some mixers).</p>
 <!-- raw HTML omitted -->
