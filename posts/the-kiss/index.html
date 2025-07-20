@@ -2,15 +2,52 @@
 <html lang="en-us">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<style type=text/css>body{font-family:monospace;}</style>
-	<title>The Kiss</title>
-	
-	
-	<link rel="stylesheet" href="/kromftronics-website-deploy/css/style.css">
-	
-	
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<style type=text/css>body{font-family:monospace;}</style>
+<title>The Kiss</title>
+
+
+<link rel="stylesheet" href="/kromftronics-website-deploy/css/style.css">
+
+
+
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"
+    integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer">
+
+<script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"
+    integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    type="text/javascript"></script>
+
+<script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+    integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    type="text/javascript"></script>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "\\[", right: "\\]", display: true},
+        {left: "$", right: "$", display: false},
+        {left: "\\(", right: "\\)", display: false},
+      ],
+    });
+  });
+</script>
+
 </head>
 <body>
 	<header>
@@ -261,12 +298,12 @@
 <!-- raw HTML omitted -->
 <p>Figure 5 above shows the datasheet 24dB/oct lowpass filter. It looks quite overwhelming, but in essence, it is four identical 6dB/oct voltage-controlled lowpass filter stages connected in series with the output of the last stage being fed back into the first stage to create the resonance. The amount of resonance in the filter can be controlled by the internal feedback VCA (named RES VCA in figure 5), where the gain of the feedback VCA is determined by the input current on pin 9. Each lowpass filter consist of one variable gain amplifier (∆A), an external capacitor, and a buffer (B). For more details on how all of these different elements works together, the original <a href="https://nebula.wsimg.com/f89efadae26b3ee39839dc6b51665370?AccessKeyId=E68C2B1C2930EF53D3A4&amp;disposition=0&amp;alloworigin=1">CEM3320</a> datasheet is a great resource in terms of understanding how the exponential converter, the variable gain amplifiers, and the capacitors &ldquo;creates&rdquo; a voltage-controlled filter. The datasheet also derives the equations that describes the operation of the filter. To get a basic understanding of the operation of the circuit, I&rsquo;m going to give a short summary of the essential equations from the datasheet.</p>
 <p>The cutoff frequency of the filter fc is controlled by the voltage at pin 12 (FREQ CV) which expects a 60mV/decade control voltage or 18mV/octave. The reason can be found in the definition of the cutoff frequency derived in the datasheet which can be expressed as</p>
-<p>$$f_{c} = \frac{A_{IO}}{2\pi\cdot R_{EQ}\,C_P}\cdot e^{-V_{\textit{PIN12}}/26\textnormal{mV}}$$,</p>
+<p>$$f_{c} = \frac{A_{IO}}{2\pi\cdot R_{EQ}\,C_P}\cdot e^{-V_{\textit{PIN12}}/26\textnormal{mV}}$$</p>
 <p>which for the resistors in figure 5 and the typical operating conditions simplifies to</p>
-<p>$latex {f_{c} \approx \frac{0.9}{2\pi\cdot 91\textnormal{k}\Omega\cdot C_P}\cdot e^{-V_{\textit{PIN12}}/26\textnormal{mV}}} &amp;bg=000000&amp;fg=ffffff&amp;s=1$,</p>
-<p>where $latex C_P &amp;bg=000000&amp;fg=ffffff$ is the value of the capacitors connected to pin 4, 5, 11, and 16. The typical standard in control voltage for synthesizers is 1V/octave, which is why the 100kΩ and the 1k8Ω resistive divider are put before pin 12 since this converts a 1V change to an 18mV change:</p>
-<p>$latex {V_{\textit{PIN12}} = \frac{1\textnormal{k}8}{100\textnormal{k}+1\textnormal{k}8}\cdot1\textnormal{V} \approx 17.68\textnormal{mV}} &amp;bg=000000&amp;fg=ffffff&amp;s=1$.</p>
-<p>Adding 18mV to $latex V_{\textit{PIN12} &amp;bg=000000&amp;fg=ffffff}$ halves the cutoff frequency because of the negative exponential function, which allow us to get the 1V/oct scaling. So it all makes sense.</p>
+<p>$${f_{c} \approx \frac{0.9}{2\pi\cdot 91\textnormal{k}\Omega\cdot C_P}\cdot e^{-V_{\textit{PIN12}}/26\textnormal{mV}}}$$</p>
+<p>where $C_P$ is the value of the capacitors connected to pin 4, 5, 11, and 16. The typical standard in control voltage for synthesizers is 1V/octave, which is why the 100kΩ and the 1k8Ω resistive divider are put before pin 12 since this converts a 1V change to an 18mV change:</p>
+<p>$${V_{\textit{PIN12}} = \frac{1\textnormal{k}8}{100\textnormal{k}+1\textnormal{k}8}\cdot1\textnormal{V} \approx 17.68\textnormal{mV}}$$</p>
+<p>Adding 18mV to $V_{\textit{PIN12}}$ halves the cutoff frequency because of the negative exponential function, which allow us to get the 1V/oct scaling. So it all makes sense.</p>
 <h4 id="modification-compared-to-the-datasheet">Modification compared to the datasheet</h4>
 <p>All in all, this datasheet circuit just worked out of the box when I did some testing on a breadboard, but I wanted the range of the cutoff filter to be a bit more &ldquo;bright&rdquo;. This was achieved by scaling the four 300pF filter capacitors CP down to 150pF, effectively increasing the baseline cutoff frequency by an octave as indicated by the cutoff frequency equation above. I also added a buffer between the SIGNAL OUTPUT and the resonance feedback (pin 8), since this was suggested by the <a href="https://electricdruid.net/cem3320-filter-designs/">Electric Druid</a> article to improve the frequency response of the filter at lower frequencies. And it is never a bad idea to add a buffer if you have an extra opamp lying around ( ‾ ʖ̫ ‾)</p>
 <h4 id="frequency-cv-summing">Frequency CV Summing</h4>
